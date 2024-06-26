@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+    <link rel="stylesheet" href="stylesheets/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="DayDisplay">
+            <h4><%= day %></h4>
+        </div>
+        
+        <div class="Tasks">
+            <ul>
+                <% items.forEach(function(item) { %>
+                    <li>
+                        <%= item.text %> - <%= item.date %>
+                        <% if (item.milestone) { %>
+                            <span class="milestone">Milestone</span>
+                        <% } %>
+                    </li>
+                <% }) %>
+            </ul>
+        </div>
+
+        <form action="/add" method="post">
+            <input type="text" name="addItem" autocomplete="off" placeholder="Add a new task" required>
+            <input type="date" name="dueDate" value="<%= today %>" required>
+            <label>
+                <input type="checkbox" name="milestone"> Milestone
+            </label>
+            <button class="add-button" value="submit" type="submit">
+                <i class="fas fa-plus">+</i>
+            </button>
+        </form>
+    </div>
+</body>
+</html>
